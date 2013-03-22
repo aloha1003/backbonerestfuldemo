@@ -1,0 +1,20 @@
+<div id="reply_list">
+    <div class="header">
+      <span class="col_fade">{{=count}} 回覆</span>
+    </div>
+   {{ _.each(list,function(reply,key){  }}
+   <div class="rowtainer">
+     <div class="user_avatar avatar_small">
+     </div>
+     <span class="reply_author"><a href="/user/{=reply.user._id}}" class="dark">{{=reply.user.username}}</a></span>
+     <span class="col_fade">
+      在 {{= _.template(commonDir,{time:reply.updatetime}) }}回覆
+      
+    </span>
+     <div class="reply_content">{{=reply.content}}</div>
+   </div>
+    
+   {{ }); }}
+  </div>
+  
+  <div id="reply"></div>

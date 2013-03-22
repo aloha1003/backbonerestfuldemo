@@ -1,0 +1,11 @@
+
+<form id="post_edit" method="post" action="/post/add">
+	<input type="hidden" id="ptype" value="{{=post.ptype}}" name="ptype">
+	<input type="hidden" id="_id" value="{{=post._id.$id}}" name="_id">
+ <fieldset>
+  <legend>Edit Post:</legend>
+  Title: <input type="text" name="title" id="title" value="{{=post.title}}"><br>
+  Content: <textarea name="content" id="content" cols="30" rows="10">{{=post.content}}</textarea>
+   <input id="add_submit"  type="submit" value="Submit">
+ </fieldset>
+</form>

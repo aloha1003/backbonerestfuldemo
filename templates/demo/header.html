@@ -1,0 +1,28 @@
+<div class="navbar navbar-fixed-top">   
+  <div class="navbar-inner">
+    <div class="container">
+   
+        {{if (user._id != undefined) { }}
+ 
+      
+       <div class="brand"> Welcome to {{=user.username}} </div>
+        
+      
+      <div id="header_menu">
+        <ul class="nav">
+         <li><a href="#list">Post List</a></li>
+         <li><a id="post_add" href="#post/add">Add Post</a></li>
+         
+        </ul>
+      </div>
+      <div class="btn-group pull-right">
+      <a href="#user/logout" class="btn">Logout</a>
+   </div>
+   {{ } else { }}
+     <div class="btn-group pull-right">
+      <div class="brand"> Welcome to Aloha's Demo</div>
+   </div>
+   {{ } }}
+    </div>
+  </div>
+</div>

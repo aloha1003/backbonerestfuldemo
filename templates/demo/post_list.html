@@ -1,0 +1,24 @@
+ <table>
+    <tr>
+      <th>Title</th>
+      <th>Edit/Delete</th>
+     
+    </tr>
+    {{ _.each(posts,function(post,key,list){  }}
+    
+    <tr>
+      <td><a href="#post/{{=post._id.$id }}">{{=post.title}}</a></td>
+      <td>
+         <a class="update-link" href="#post/edit/{{= post._id.$id }}" title="Update this todo item">
+      Edit
+    </a> /
+     <a class="del-btn" href="#post/del/{{= post._id.$id  }}" title="Delete this todo item">
+        Delete
+     </a>
+
+      </td>
+      
+    </tr>
+    {{ }); }}
+
+  </table>
