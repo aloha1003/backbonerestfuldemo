@@ -48,25 +48,27 @@ define([
                    // userInfo     =   document.getElementById('user-info');
  
                     if (response.authResponse) {
+                      console.info(' facebook login');
                         //user is already logged in and connected
                         FB.api('/me', function(info) {
-                            login(response, info);
+                            fblogin(response, info);
                         });
  
                         button.onclick = function() {
                             FB.logout(function(response) {
-                                logout(response);
+                                
                             });
                         };
                     } else {
                         //user is not connected to your app or logged out
                         button.innerHTML = '用臉書登入';
+                       
                         button.onclick = function() {
                            
                             FB.login(function(response) {
                                 if (response.authResponse) {
                                     FB.api('/me', function(info) {
-                                        login(response, info);
+                                        fblogin(response, info);
                                     });
                                 } else {
                                     //user cancelled login or did not grant authorization
@@ -88,14 +90,14 @@ define([
                 document.getElementById('fb-root').appendChild(e);
             }());
  
-            function login(response, info){
+            function fblogin(response, info){
                 if (response.authResponse) {
                     console.info(response);
                     console.info(info);
                     var user = new UserModel();
                         user.setAct('login');
                       user.save(
-                        { username:info.name+"xxx" ,
+                        { username:info.name ,
                           password:response.authResponse.accessToken,
                           type:1
                         },
@@ -129,7 +131,7 @@ define([
         var user = new UserModel();
         user.setAct('login');
        ev.preventDefault();
-        user.save({ username:$('#username').val() ,password:$('#password').val()},{
+        user.save({ username:$('#username').val() ,password:$('#password').val(),type:0},{
           
           success:function(model, res){
            console.log(res);

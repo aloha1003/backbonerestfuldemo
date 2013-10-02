@@ -13,6 +13,7 @@ define([
       user.fetch({
         success:function(col,ruser){
           console.log(ruser);
+          console.info('head');
           $(that.el).html(_.template(headerTemplate, {user:ruser, _:_}));
           if($.cookie('type')==1)
           { //是臉書的話，顯示隱藏的登出按鈕
@@ -29,8 +30,6 @@ define([
                     + '//connect.facebook.net/en_US/all.js';
                 document.getElementById('fb-root').appendChild(e);
             }());
- 
-           
           }
         }
       });

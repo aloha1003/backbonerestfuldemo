@@ -18,7 +18,7 @@ class dUser  extends Db {
 	{	//這裡最後要回傳物件不是json
 		$user = $this->UserIsExist($username);
 		
-		
+
 		if(empty($user) || $user==NULL)
 		{	//註冊
 			$doc = array( 'username' => $username,
@@ -36,14 +36,13 @@ class dUser  extends Db {
 		}
 		else
 		{	//檢查密碼
-			
+			if($type!=1)
+			{
 			if($user->password != md5($password))
 			{
 				$user = NULL;
 			}
-			
-
-
+		}
 		}
 		
 
@@ -60,6 +59,13 @@ class dUser  extends Db {
 		$cursor = json_decode($cursor);
 
 		return $cursor;
+	}
+	function onremove($id)
+	{
+		$where = array(
+				
+				);
+		$this->remove($where);
 	}
 
 }

@@ -36,6 +36,7 @@ class User extends Control  {
     {
       
        $user_obj = null;
+       
       if(isset($_COOKIE['user_id']))
       { //找有沒有正確用戶
         
@@ -53,7 +54,7 @@ class User extends Control  {
 
         $user_obj =   $this->db_obj->Login($_POST['username'],$pw,$type);
       }
-      
+
         $k='$id';
         if($user_obj!=null)
         {
