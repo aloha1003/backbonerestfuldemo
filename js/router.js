@@ -8,7 +8,7 @@ define([
   var AppRouter = Backbone.Router.extend({
     routes: {
       'post/add'      :    'addpost',
-      'post/:id' : 'getpost',
+      /*'post/:id' : 'getpost',*/
       'post/edit/:id' : 'editpost',
       'post/del/:id'  : 'delpost',
       'user/logout'   : 'logout',
@@ -102,6 +102,7 @@ define([
       {
         var opt = {};
             opt._id = id;
+
          require(['views/demo/post_edit_page'], function (PostEditPage) {
           
           var  postEditPage = Vm.create(appView, 'PostEditPage', PostEditPage,opt);
@@ -136,14 +137,14 @@ define([
             var post = new PostModel({id:id});
           post.destroy({
             success:function(model,res){
-              console.log('sus');
-              console.log(res);
+              console.info('sus');
               Backbone.history.navigate('/',true);
+
             },
             error:function(model,res){
                  console.log('err');
                  console.log(res);
-                  Backbone.history.navigate('/',true);
+                 Backbone.history.navigate('/',true);
             }     
             });
         }); 

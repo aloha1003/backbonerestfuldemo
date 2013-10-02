@@ -3,7 +3,7 @@ define([], function () {
   return  {
   		server :  "server/phpserver/index.php/",
   		file_upload :  "server/phpserver/file.php",
-  		facebookappid: 'Your Facebook APP APPID'
+  		facebookappid: 'Yor facebook appid'
   	};
 });
 

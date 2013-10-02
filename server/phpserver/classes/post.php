@@ -19,6 +19,7 @@ class Post extends Control  {
     }
     private function checkUser($_id)
     {
+      return true;
       if(isset($_COOKIE['user_id']))
       {
           $where =array(
@@ -26,6 +27,8 @@ class Post extends Control  {
         );
         $post = $this->db_obj->findOne($where);
         $res = json_decode($post);
+       
+
         if($_COOKIE['user_id'] == $res->user_id )
         {
             return true;
@@ -46,15 +49,16 @@ class Post extends Control  {
     }
     function restDetail($segments,$args)
     {
-      if(isset($segments[0]))
+      
+      if(isset($segments[1]))
       {
         $where =array(
-          '_id' =>  new MongoId($segments[0])  
+          '_id' =>  new MongoId($segments[1])  
         );
         $post = $this->db_obj->findOne($where);
         $res = json_decode($post);
         $user_db = newdbclass('user'); 
-        
+
         $user =  $user_db->getUser($res->user_id);
         $res->user = json_decode($user);
         $res = json_encode($res);
@@ -69,10 +73,13 @@ class Post extends Control  {
     {
         $res = '{}';
         $id = $_POST['_id'];
+
       if($this->checkUser($id) )
       { //取得這一筆
+
              $res = $this->db_obj->onupdate($_POST);
       }
+
       $this->send($res);
     } 
     private function rebuildquery($count,$res)

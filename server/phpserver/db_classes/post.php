@@ -39,9 +39,7 @@ class dPost  extends Db {
 						'ptype'	=>	(isset($arr['ptype'])	?	$arr['ptype']	:	0),
 						'content'	=>	(isset($arr['content'])	?	$arr['content']	:	''),
 						'files'	=>	(isset($arr['files'])	?	$arr['files']	:	''),
-						
 						'updatetime' => mktime()
-						
 					);
 				$where =array(
           				'_id' =>  new MongoId($arr['_id'])  

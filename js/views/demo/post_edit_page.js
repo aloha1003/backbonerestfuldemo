@@ -24,6 +24,7 @@ define([
           success:function(res){
               var headerView =  Vm.create(this,'HeaderView', HeaderView);
               headerView.render();
+              
               var pageView =  Vm.create(this,'pageView', PostEditView,that.options);
               pageView.render();
           },

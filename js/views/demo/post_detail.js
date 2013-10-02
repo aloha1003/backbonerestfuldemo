@@ -17,7 +17,7 @@ define([
     el: '.inner_container',
     render: function () {
       console.log(this.options);
-      var post = new postCollection({act:"detail",_id: this.options._id});
+      var post = new postCollection({act:"detail",i: this.options._id});
       var that = this ;
         post.fetch({
           success:function(col,res){     

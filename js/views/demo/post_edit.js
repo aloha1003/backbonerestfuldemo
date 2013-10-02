@@ -40,7 +40,7 @@ define([
               console.log('suc');
               console.log(Router);
              
-             Backbone.history.navigate('#post/'+$('#_id').val(),true);
+             Backbone.history.navigate('#list/',true);
             },
             error:function(model,response){
               console.log('err');
@@ -51,15 +51,33 @@ define([
     },
     el: '.inner_container',
     render: function () {
-      
-      var post = new postCollection({act:"detail",_id: this.options._id});
       var that = this ;
+      var post = new postCollection({act:"detail",i: that.options._id});
+     
         post.fetch({
           success:function(col,res){   
-          console.log(res.files);  
+           
               $(that.el).html(_.template(postdetailTemplate,{post:res}));
-              $('#del_confirm').click(function(){
-                  location.href= $(this).attr('href');
+              $('#del_confirm').click(function(e){
+                require(['models/post'], function (PostModel) {
+                    var post = new PostModel({id:that.options._id});
+                    post.destroy({
+                                success:function(model,res){
+                                  console.info('sus');
+                                  $('#myconfirm .modal-body p').text('刪除成功');
+                                  $('#del_confirm').hide();
+                                  $('#myconfirm').on('hidden',function(){
+                                      Backbone.history.navigate('/',true);
+                                  });
+                                },
+                                error:function(model,res){
+                                     console.log('err');
+                                     console.log(res);
+                                     $('#myconfirm .modal-body p').text('刪除失敗，請聯絡管理員');      
+                                }     
+                                });
+                });
+              
               });
                 $('#files').fileupload({
             dataType: 'json',
