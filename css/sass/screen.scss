@@ -4,3 +4,142 @@
  * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
 
 @import "compass/reset";
+/* Media Queries ------------------------------------------------------------ */
+/* Smartphones (portrait and landscape) ----------- */
+@media only screen 
+and (min-device-width : 320px) 
+and (max-device-width : 480px) 
+{
+/* Styles */
+	.container
+		{
+			width:auto;
+			min-width:320px;
+			max-width:440px;
+			height:auto;
+		}
+}
+
+/* Smartphones (landscape) ----------- */
+@media only screen 
+and (min-width : 321px) 
+and (orientation : landscape) 
+{
+	/* Styles */
+	.container
+			{
+				width:90%;
+				height:auto;
+			}
+}
+
+/* Smartphones (portrait) ----------- */
+@media only screen 
+and (max-width : 320px) 
+{
+	/* Styles */
+	body
+	{
+		width:300px;
+		height:auto;
+		
+	}
+	.container
+			{
+				width:300px;
+				height:auto;
+			}
+}
+
+/* iPads (portrait and landscape) ----------- */
+@media only screen 
+and (min-device-width : 768px) 
+and (max-device-width : 1024px)
+{
+	/* Styles */
+	.container
+	{
+		width:auto;
+		min-width:768px;
+		max-width:1000px;
+		height:auto;
+	}
+}
+
+/* iPads (landscape) ----------- */
+@media only screen 
+and (min-device-width : 768px) 
+and (max-device-width : 1024px) 
+and (orientation : landscape) 
+{
+	/* Styles */
+	.container
+	{
+		width:auto;
+		min-width:768px;
+		max-width:1000px;
+		height:auto;
+	}
+}
+
+/* iPads (portrait) ----------- */
+@media only screen 
+and (min-device-width : 768px) 
+and (max-device-width : 1024px) 
+and (orientation : portrait)
+{
+	/* Styles */
+	.container
+	{
+		width:auto;
+		min-width:768px;
+		max-width:1000px;
+		height:auto;
+	}
+}
+
+/* Desktops and laptops ----------- */
+@media only screen 
+and (min-width : 1224px) 
+{
+	/* Styles */
+	.container
+	{
+		width:auto;
+		min-width:1224px;
+		height:auto;
+	}
+}
+
+/* Large screens ----------- */
+@media only screen 
+and (min-width : 1824px) 
+{
+	/* Styles */
+	.container
+	{
+		width:auto;
+		min-width:1824px;
+		height:auto;
+	}
+}
+
+/* iPhone 4 ----------- */
+@media
+only screen and (-webkit-min-device-pixel-ratio : 1.5),
+only screen and (min-device-pixel-ratio : 1.5) 
+{
+	/* Styles */
+	.container
+		{
+			width:280px;
+			height:auto;
+		}
+}
+
+
+
+
+
+
+

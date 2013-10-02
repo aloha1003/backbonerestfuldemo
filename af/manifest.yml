@@ -1,0 +1,21 @@
+---
+applications:
+  .:
+    name: wp
+    framework:
+      name: php
+      info:
+        mem: 128M
+        description: PHP Application
+        exec: 
+    infra: aws
+    url: ${name}.${target-base}
+    mem: 128M
+    instances: 1
+    services:
+      mysql-a22be:
+        type: mysql
+      redis-a8b62:
+        type: redis
+      mongodb-96524:
+        type: mongodb

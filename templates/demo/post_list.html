@@ -1,24 +1,44 @@
- <table>
-    <tr>
-      <th>Title</th>
-      <th>Edit/Delete</th>
+<ul class="thumbnails">
+  {{ _.each(posts,function(post,key){  }}
+  <li class="span4">
+    <div class="thumbnail">
+       <div   id="car{{=key}}" class="carousel " style="max-height:200px;height:200px;">
+        {{ if(!_.isEmpty(post.files) ){ }}
+        <div class="carousel-inner">
+    {{_.each(post.files,function(file,key) { }}
+        <div class="thumbnail item {{if (key==0){ }} active {{ } }}"> 
+          <img width="125" height="100" src="{{=file.url}}" class="imgs" alt="">
+      </div>
      
-    </tr>
-    {{ _.each(posts,function(post,key,list){  }}
-    
-    <tr>
-      <td><a href="#post/{{=post._id.$id }}">{{=post.title}}</a></td>
-      <td>
-         <a class="update-link" href="#post/edit/{{= post._id.$id }}" title="Update this todo item">
-      Edit
-    </a> /
-     <a class="del-btn" href="#post/del/{{= post._id.$id  }}" title="Delete this todo item">
-        Delete
-     </a>
-
-      </td>
-      
-    </tr>
     {{ }); }}
+       </div>
+       <!-- Carousel nav -->
+<a class="carousel-control left" href="#car{{=key}}" data-slide="prev">&lsaquo;</a>
+<a class="carousel-control right" href="#car{{=key}}" data-slide="next">&rsaquo;</a>
+ 
+       {{ } }}
+            </div>
+      <h3>
+        <a href="#post/edit/{{=post._id.$id }}">{{=post.title}}</a>   
+      </h3>
+      <p>{{=post.content}}</p>
+    </div>
+  </li>
+  {{ }); }}  
+</ul>
 
-  </table>
+ {{if (page_count>0) { }}
+<div class="pagination">
+  <ul>
+  {{_.each(_.range(1,page_count+1),function(i) {   }}
+    <li  {{if (now_page == i){  }}class="disabled" {{ }  }} >
+     <a class="page_item" href="{{=page_pre_href}}{{=i}}">{{=i}}</a>
+    </li>
+  {{  }); }}
+  </ul>
+</div>
+
+
+
+
+{{  } }}

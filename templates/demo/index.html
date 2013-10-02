@@ -1,10 +1,24 @@
 {{if (user._id == undefined) { }}
  
- <fieldset>
-  <legend>Please Login:</legend>
-  Username: <input type="text" name="username" id="username"><br>
-   <button class="submit">Submit</button>
- </fieldset>
+<script>
+
+</script>
+<div id="fb-root"></div>
+<fieldset class="form-signin">
+  <form action="" method="post" class="form loginform">
+    <h2 class="form-signin-heading">請登入</h2>
+    <input type="text"  name="username" id="username"  placeholder="請輸入Email address" class="input-block-level">
+    <input type="password" id="password"  name="password"   placeholder="請輸入 Password" class="input-block-level"><div class="control-group"><span id="password_help"class=" error help-inline"></span></div>
+    <label class="checkbox">
+        <input type="checkbox" value="remember-me">
+        記得我
+    </label> 
+    <button  class="btn submit  btn-large btn-primary" type="button" >登入</button> 或用 
+    
+    <button  class="btn btn-large btn-primary" type="button" id="fb-auth">用臉書登入</button>
+    </form>
+</fieldset>
+
 
  {{ } else { }}
  

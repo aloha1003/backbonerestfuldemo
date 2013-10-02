@@ -3,31 +3,29 @@ define([
   'text!templates/demo/template.html',
   'views/demo/header',
   'views/demo/servernotok',
-  'collections/serverok',
-  'collections/getnowuser',
-  'views/demo/index'
-], function( Vm, indexTemplate,HeaderView,ServerNotOkView,ServerOkCollection,UserCollection,IndexView){
- 
+  'collections/serverok', 
+  'views/demo/index',
+  'views/demo/post_add'
+], function( Vm, indexTemplate,HeaderView,ServerNotOkView,ServerOkCollection,IndexView,PostAddView){
   var DashboardPage = Backbone.View.extend({
-
     el: '.page',
-    initialize: function(opt)
-    {
-        
-       
-        this.opt = opt;
-    },
+     initialize: function(options)
+      {
+          
+          options || (options = {});
+          this.options = options;
+      },
     render: function () {
+    
+     var that = this;
       $(this.el).html(indexTemplate);
-      var that = this;
       var serverok = new ServerOkCollection();
         serverok.fetch({
           success:function(res){
-           
-             var indexView =  Vm.create(this,'IndexView', IndexView,that.opt);
-                indexView.render();
-                var headerView =  Vm.create(this,'HeaderView', HeaderView);
-                headerView.render();
+              var headerView =  Vm.create(this,'HeaderView', HeaderView);
+              headerView.render();
+              var pageView =  Vm.create(this,'pageView', PostAddView,that.options);
+              pageView.render();
           },
           error:function(col,err){
             console.log('Error:');
@@ -37,7 +35,6 @@ define([
           }
         });   
       }
-    
   });
   return DashboardPage;
 });

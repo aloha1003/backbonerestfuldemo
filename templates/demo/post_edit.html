@@ -1,11 +1,63 @@
 
-<form id="post_edit" method="post" action="/post/add">
+<form id="post_edit" method="post" class="form-horizontal" action="/post/add">
 	<input type="hidden" id="ptype" value="{{=post.ptype}}" name="ptype">
 	<input type="hidden" id="_id" value="{{=post._id.$id}}" name="_id">
- <fieldset>
-  <legend>Edit Post:</legend>
-  Title: <input type="text" name="title" id="title" value="{{=post.title}}"><br>
-  Content: <textarea name="content" id="content" cols="30" rows="10">{{=post.content}}</textarea>
-   <input id="add_submit"  type="submit" value="Submit">
+ <fieldset >
+  <legend>修改文章:</legend>
+  <div class="control-group">
+     <label class="control-label ">照片</label>
+     <div class="controls">
+         <input type="file"  name="files[]" multiple id="files"  data-url="server/phpserver/file.php" name="file[]">
+        <div id="filelists" class="files row-fluid show-grid">
+		{{_.each(post.files,function(file,key) { }}
+		<div class="span1">
+			<div style="width:60px;height:80px;">
+				<img  class="thumbnailurl"  src="{{=file.thumbnailurl}}" alt="">
+			</div>
+			<input type="hidden" name="imgname[]" deleteurl="{{=file.deleteurl}}"  url="{{=file.url}}" value="{{=file.name}}" thumbnailurl="{{=file.thumbnailurl}}">
+			<button type="button" class="btn btn-warning cancel editdelete" url="{{=file.deleteurl}}">刪除</button>
+		</div>
+		
+
+		 {{ }); }}
+        </div>
+     </div>
+  </div>  
+  <div class="control-group controls-row">
+    <label for="title" class="control-label" > 標題: </label>
+    <div class="controls"> 
+      <input type="text" name="title" class=" form-inline" value="{{=post.title}}" id="title">
+    </div>
+ 
+  </div>
+  <div class="control-group controls-row">
+     <label for="content" class="control-label"> 說明: </label>
+      <div class="controls"> 
+  	  <textarea name="content" id="content" cols="30" rows="10">{{=post.content}}</textarea>
+    </div>
+  </div>
+  
+  
+  <div class="control-group">
+  	<input id="add_submit" class="btn" type="submit" value="存檔">
+    <button type="button"  data-toggle="modal" data-target="#myconfirm"  class="btn" >刪除</a>
+      
+  </div>
+  <div class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" id="myconfirm" >
+    <div class="modal-header">
+       <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3 id="myModalLabel">確定刪除該筆資料?</h3>
+    </div>
+    <div class="modal-body">
+      <p></p>
+    </div>
+     <div class="modal-footer">
+      <button class="btn" type="button" data-dismiss="modal" aria-hidden="true">關閉</button>
+      <button class="btn btn-warning" type="button" href="#post/del/{{=post._id.$id}}" id="del_confirm" >刪除</button>
+    </div>
+  </div>
  </fieldset>
 </form>
+
+
+

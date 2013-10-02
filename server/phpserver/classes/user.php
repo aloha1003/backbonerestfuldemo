@@ -40,20 +40,30 @@ class User extends Control  {
       { //找有沒有正確用戶
         
         $user_obj =   $this->db_obj->getUser($_COOKIE['user_id']);
+
         $user_obj = json_decode($user_obj);
+        $type=$user_obj->type;
+       
 
       }
       else
       {
-        
-        $user_obj =   $this->db_obj->Login($_POST['username']);
-        
+        $pw = isset($_POST['password']) ? $_POST['password'] : '';
+        $type = isset($_POST['type']) ? $_POST['type'] : 0;
+
+        $user_obj =   $this->db_obj->Login($_POST['username'],$pw,$type);
       }
       
         $k='$id';
-        $id =  $user_obj->_id->$k;
+        if($user_obj!=null)
+        {
+           $id =  $user_obj->_id->$k;
         setcookie("user_id",$id,time()+3600,'/');
+        setcookie("user_type",$type,time()+3600,'/');
+      
+        }
        $this->send(json_encode($user_obj));
+       
          
     }
 

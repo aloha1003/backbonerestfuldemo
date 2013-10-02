@@ -14,11 +14,45 @@ define([
         success:function(col,ruser){
           console.log(ruser);
           $(that.el).html(_.template(headerTemplate, {user:ruser, _:_}));
+          if($.cookie('type')==1)
+          { //是臉書的話，顯示隱藏的登出按鈕
+            window.fbAsyncInit = function() {
+                 FB.init({ appId: 'YOUR FACEBOOK APPID',
+                    status: true,
+                    cookie: true,
+                    xfbml: true,
+                    oauth: true});
+            };
+            (function() {
+                var e = document.createElement('script'); e.async = true;
+                e.src = document.location.protocol
+                    + '//connect.facebook.net/en_US/all.js';
+                document.getElementById('fb-root').appendChild(e);
+            }());
+ 
+           
+          }
         }
       });
     },
     events:{
-      'click #post_add' : 'post_add'
+      'click #post_add' : 'post_add',
+      'click #logout' :'logout'
+    },
+    'logout'  :function(event){
+      event.preventDefault();
+     
+       if($.cookie('type')==1)
+       {
+      FB.logout(function(response) {
+                               console.info("FBLOGOUT");
+                               console.info(response);
+                                Backbone.history.navigate($(event.currentTarget).attr('href'),true);
+                            });
+    }
+    else
+       Backbone.history.navigate($(event.currentTarget).attr('href'),true);
+
     },
     'post_add'  :function(){
        require(['views/demo/post_add'],function(page){

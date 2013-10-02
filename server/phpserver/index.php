@@ -69,10 +69,8 @@ class Container extends Control {
         //echo 'index.php/{control name}/{object id}';
         $msg = 'index.php/{control name}/{object id}';
         echo json_encode($msg);
-       
         
     }
-    
     function run() {
 
         if ( $this->control === false) {
@@ -86,9 +84,7 @@ class Container extends Control {
         //request resource by RESTful way.
        
         //正統的REST
-        /*test($_SERVER);
-        test($_POST);
-        exit;*/
+        
         
         $_SERVER['REQUEST_METHOD'] = isset($_SERVER['HTTP_X_HTTP_METHOD_OVERRIDE'])   ? $_SERVER['HTTP_X_HTTP_METHOD_OVERRIDE']  :   $_SERVER['REQUEST_METHOD'];
         
@@ -106,10 +102,6 @@ class Container extends Control {
             }
              array_shift($this->segments);  
         }
-
-
-       
-
         $arguments = (isset($this->segments[0])) ?   $this->localgetvar($this->segments[0])  :   array();
         $this->getpostvar();
         $this->control->$method($this->segments, $arguments);
@@ -118,7 +110,6 @@ class Container extends Control {
     {
 
          $data = json_decode(file_get_contents('php://input'));
-
          if($data!=NULL)
          {
             foreach($data as $k => $v)
@@ -126,8 +117,7 @@ class Container extends Control {
                 
                 $_POST[$k] = $v;
             } 
-        }  
-       
+        }   
     }
     function localgetvar($str){
         
@@ -136,6 +126,7 @@ class Container extends Control {
         return $arr;
     }
 } //end class Container
+
 
 require_once('db.php');
 

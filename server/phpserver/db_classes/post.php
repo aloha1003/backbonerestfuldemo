@@ -15,6 +15,7 @@ class dPost  extends Db {
 						'ptype'	=>	(isset($arr['ptype'])	?	$arr['ptype']	:	0),
 						'content'	=>	(isset($arr['content'])	?	$arr['content']	:	''),
 						'user_id'	=>	(isset($arr['user_id'])	?	$arr['user_id']	:	''),
+						'files'	=>	(isset($arr['files'])	?	$arr['files']	:	''),
 						'updatetime' => mktime(),
 						'createtime' => mktime()
 					);
@@ -37,6 +38,7 @@ class dPost  extends Db {
 						'title'	=>	(isset($arr['title'])	?	$arr['title']	:	''),
 						'ptype'	=>	(isset($arr['ptype'])	?	$arr['ptype']	:	0),
 						'content'	=>	(isset($arr['content'])	?	$arr['content']	:	''),
+						'files'	=>	(isset($arr['files'])	?	$arr['files']	:	''),
 						
 						'updatetime' => mktime()
 						

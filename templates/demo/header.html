@@ -1,3 +1,4 @@
+<div id="fb-root"></div>
 <div class="navbar navbar-fixed-top">   
   <div class="navbar-inner">
     <div class="container">
@@ -5,7 +6,7 @@
         {{if (user._id != undefined) { }}
  
       
-       <div class="brand"> Welcome to {{=user.username}} </div>
+       <div class="brand"> Welcome come back  {{=user.username}} </div>
         
       
       <div id="header_menu">
@@ -16,10 +17,10 @@
         </ul>
       </div>
       <div class="btn-group pull-right">
-      <a href="#user/logout" class="btn">Logout</a>
+      <a href="#user/logout" id="logout" class="btn">Logout</a>
    </div>
    {{ } else { }}
-     <div class="btn-group pull-right">
+     <div class="btn-group pull-left">
       <div class="brand"> Welcome to Aloha's Demo</div>
    </div>
    {{ } }}

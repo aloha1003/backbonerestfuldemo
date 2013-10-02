@@ -93,12 +93,14 @@ class Post extends Control  {
       $sc = count($segments);
       $page =($sc>0) ?  intval($segments[$sc-1])  : 1;
       $page = ($page<=1)  ? 1 : $page;
-      
+      $where = array();
+
       switch($sc)
       {
         default:
         case 0:
         case 1:
+       
           $count = $this->db_obj->findcount();
           if($count>0)
           {
@@ -109,8 +111,9 @@ class Post extends Control  {
         break;
         case 2:
         case 3:
+        case 4:
           //檢查第一個是什麼
-        $where = array();
+        
         if($segments[0] == 'u')
         { //查詢人
           $where = array(
@@ -121,12 +124,18 @@ class Post extends Control  {
         }
         else if($segments[0] == 'k')
         {
-           $where = array(
-            'content' =>  $segments[1],
-            'title' =>  $segments[1],
+         
+           $or = array(
+            array('content' =>   new MongoRegex('/'.$segments[1].'/')),
+            array('title' =>   new MongoRegex('/'.$segments[1].'/'))
               );
+           $where = array(
+            '$or'=>$or
+            );
+
         }
-        if(!empty($where))
+        
+        if(true)
         {
            $count = $this->db_obj->findcount($where);
             $res = $this->db_obj->find($where,$page,$this->per_page);
@@ -138,7 +147,7 @@ class Post extends Control  {
           $res = '{}';
          
          
-          
+
         break;
 
       }

@@ -1,0 +1,21 @@
+---
+applications:
+  .:
+    name: aloha1003.ap01.aws.af.cm
+    framework:
+      name: standalone
+      info:
+        mem: 64M
+        description: Standalone Application
+        exec: 
+    runtime: php
+    command: 
+    infra: ap-aws
+    url: 
+    mem: 128M
+    instances: 1
+    services:
+      redis-c4b33:
+        type: redis
+      mongodb-6f53c:
+        type: mongodb

@@ -1,7 +1,7 @@
 <?php
 class Db   {
 	public  $db ;
-	private $host='localhost';
+	private $host='127.0.0.1';
 	private $port='27017';
 	private $user = '';
 	private $pw = '';
@@ -14,6 +14,24 @@ class Db   {
 	function DB($collection='',$page=20,$host='',$port='',$select_db='',$user='',$pw='',$using_redis='')
 	{	
 
+		
+
+		if(!empty($_SERVER['VCAP_SERVICES']))
+		{
+			$serverices = json_decode($_SERVER['VCAP_SERVICES']);
+			$ver = 'mongodb-1.8';
+			$mongodb = $serverices->$ver;	
+			$tmp = $mongodb[0];
+
+			$credentials = $tmp->credentials;
+			
+			$this->host = $credentials->host;
+			$this->port = $credentials->port;
+			$this->user = $credentials->username;
+			$this->pw = $credentials->password;
+			$this->select_db = $credentials->db;
+
+		}
 		$this->page = $page;
 		$host = ($host =='')	?	$this->host	:	$host;
 		$port = ($port =='')	?	$this->port	:	$port;
@@ -32,8 +50,10 @@ class Db   {
 			$db_str .='@';
 		}
 		$db_str .= $host.':'.$port;
+		$db_str .= '/'.$select_db;
 
 		$mongo =  new Mongo($db_str);
+		//$mongo =  new Mongo($credentials->url);
 		
 		
 		$this->db = $mongo->selectDB($select_db);
@@ -159,6 +179,7 @@ class Db   {
 		}
 		else
 		{
+
 			$result = $this->__find($where,$skip,$limit,$sort);
 		}
 		return $result;
@@ -170,7 +191,9 @@ class Db   {
 
 	private function __find($where,$skip,$limit,$sort)
 	{
-		
+
+
+		//$where = '{$or:[{title:/tesg/},{content:\'1234\'}]}';
 		if($sort!='')
 			$cursor = $this->collection->find($where)->skip(($skip-1)*$this->page)->limit($limit)->sort($sort);
 		else

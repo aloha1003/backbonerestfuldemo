@@ -14,20 +14,35 @@ class dUser  extends Db {
 		
 		return $cursor;	
 	}
-	function Login($username)
+	function Login($username,$password='',$type='0')
 	{	//這裡最後要回傳物件不是json
 		$user = $this->UserIsExist($username);
-		//echo 'user'.$user;
-
-		if(empty($user))
+		
+		
+		if(empty($user) || $user==NULL)
 		{	//註冊
-			$doc = array( "username" => $username,
+			$doc = array( 'username' => $username,
+						  'password' =>	md5($password),
+						  'type' =>	$type,
 						  'updatetime' => mktime(),
 						  'createtime' => mktime()
 						);	
 			
 			$this->insert($doc);
-			$user = json_decode($doc);
+			
+			$user = $this->UserIsExist($username);
+			//$user = json_encode($doc);
+
+		}
+		else
+		{	//檢查密碼
+			
+			if($user->password != md5($password))
+			{
+				$user = NULL;
+			}
+			
+
 
 		}
 		
@@ -42,7 +57,7 @@ class dUser  extends Db {
 
 		$cursor = $this->findOne($qry);
 
-	$cursor = json_decode($cursor);
+		$cursor = json_decode($cursor);
 
 		return $cursor;
 	}
