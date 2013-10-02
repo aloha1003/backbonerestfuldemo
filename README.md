@@ -10,5 +10,5 @@ backbonewithrestful-demo
 3.php
 
 安裝步驟:
-1.修改js/config.js 將server改成對應的網址
+1.修改js/config.js 將server改成對應的網址，及facebook api appid
 2. enjoy it.

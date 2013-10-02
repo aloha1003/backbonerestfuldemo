@@ -17,7 +17,7 @@ define([
           if($.cookie('type')==1)
           { //是臉書的話，顯示隱藏的登出按鈕
             window.fbAsyncInit = function() {
-                 FB.init({ appId: 'YOUR FACEBOOK APPID',
+                 FB.init({ appId: facebookappid,
                     status: true,
                     cookie: true,
                     xfbml: true,

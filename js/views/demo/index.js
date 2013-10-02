@@ -35,7 +35,7 @@ define([
             var userInfo;
  
             window.fbAsyncInit = function() {
-                FB.init({ appId: 'YOUR FACEBOOK APPID',
+                FB.init({ appId: facebookappid,
                     status: true,
                     cookie: true,
                     xfbml: true,

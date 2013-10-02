@@ -44,6 +44,7 @@ window.Router = Router;
 window.Config = config;
 server = config.server;
 file_upload = config.file_upload;
+facebookappid = config.facebookappid;
  _.templateSettings = {
         interpolate : /\{\{=(.+?)\}\}/g,
         escape:  /\{\{-([\s\S]+?)\}\}/g, 
