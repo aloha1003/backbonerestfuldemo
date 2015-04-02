@@ -16,8 +16,8 @@ class dPost  extends Db {
 						'content'	=>	(isset($arr['content'])	?	$arr['content']	:	''),
 						'user_id'	=>	(isset($arr['user_id'])	?	$arr['user_id']	:	''),
 						'files'	=>	(isset($arr['files'])	?	$arr['files']	:	''),
-						'updatetime' => mktime(),
-						'createtime' => mktime()
+						'updatetime' => time(),
+						'createtime' => time()
 					);
 
 				$this->insert($doc);
@@ -39,7 +39,7 @@ class dPost  extends Db {
 						'ptype'	=>	(isset($arr['ptype'])	?	$arr['ptype']	:	0),
 						'content'	=>	(isset($arr['content'])	?	$arr['content']	:	''),
 						'files'	=>	(isset($arr['files'])	?	$arr['files']	:	''),
-						'updatetime' => mktime()
+						'updatetime' => time()
 					);
 				$where =array(
           				'_id' =>  new MongoId($arr['_id'])  

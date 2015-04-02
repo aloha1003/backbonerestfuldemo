@@ -14,8 +14,8 @@ class dReply  extends Db {
 						'content' => $arr['content'],
 						'pid'	=>	$arr['pid'],
 						'user_id'	=>	(isset($arr['user_id'])	?	$arr['user_id']	:	''),
-						'updatetime' => mktime(),
-						'createtime' => mktime()
+						'updatetime' => time(),
+						'createtime' => time()
 					);
 
 				$this->insert($doc);

@@ -84,14 +84,11 @@ class Post extends Control  {
     } 
     private function rebuildquery($count,$res)
     {
-      
-      $tmp =json_decode($res);
-
-     
+       $tmp =json_decode($res);
+       $new_res =  new stdClass();
        $new_res->res = $tmp;
-      $new_res->count = $count;
-      return json_encode($new_res);
-     // $this->send(json_encode($new_res));
+       $new_res->count = $count;
+       return json_encode($new_res);
     }
     function restList($segments,$args)
     {

@@ -3,7 +3,6 @@ define([
   'text!templates/demo/post_list.html',
   'collections/post'
 ], function( Vm, postlistTemplate,postCollection){
- 
   var DashboardPage = Backbone.View.extend({
    initialize: function(option)
     {
@@ -12,9 +11,7 @@ define([
             option={}; 
             option.p=1;
           }
-
         this.opt =  option;
-
     },
     events:{
       'click a.page_item':'pushstateClick'
@@ -29,7 +26,6 @@ define([
     render: function () {
       var post = new postCollection(this.opt);
       var that = this ;
-
         post.fetch({
           success:function(col,res){
             console.info(that.opt);
@@ -51,8 +47,7 @@ define([
           },
           error:function(col,res){
             console.log('err'); 
-            console.log(res);
-            
+            console.log(res);    
            // console.log(err);
           }
         });

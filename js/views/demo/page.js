@@ -13,8 +13,6 @@ define([
     el: '.page',
     initialize: function(opt)
     {
-        
-       
         this.opt = opt;
     },
     render: function () {
@@ -23,7 +21,6 @@ define([
       var serverok = new ServerOkCollection();
         serverok.fetch({
           success:function(res){
-           
              var indexView =  Vm.create(this,'IndexView', IndexView,that.opt);
                 indexView.render();
                 var headerView =  Vm.create(this,'HeaderView', HeaderView);

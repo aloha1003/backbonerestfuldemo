@@ -42,7 +42,6 @@ define([
 	    							$this.parents('p').remove();
 	    							$this.remove();
 	    							data.abort();
-	    							
 	    					});
 		            
 	    	  $('#files').fileupload({
@@ -52,7 +51,6 @@ define([
             disableImageResize: /Android(?!.*Chrome)|Opera/
             .test(window.navigator.userAgent),
 	           done:function(e,data){
-             
               $.each(data.result.files,function(index,file){
               	console.info(file);
                 var del_btn = $('<button/>')
@@ -75,10 +73,11 @@ define([
                           });
 
                 });
-                var imgview = $('<div class="span1" > <div style="width:60px;height:80px;"><img src="'+file.thumbnailUrl+'" alt="" /></div> </div>');
+                console.log(file);
+                var imgview = $('<div class="span1" > <div style="width:60px;height:80px;"><img src="'+file.url+'" alt="" /></div> </div>');
                 $(imgview)
                 					
-                					.append('<input type="hidden" url="'+file.url+'" name="imgname[]" deleteurl="'+file.deleteUrl+'"  thumbnailurl="'+file.thumbnailUrl+'" value="'+file.name+'"" />')
+                					.append('<input type="hidden" url="'+file.url+'" name="imgname[]" deleteurl="'+file.deleteUrl+'"  url="'+file.url+'" value="'+file.name+'"" />')
                 					.append(del_btn);
                  $('#filelists').append(imgview);
 
@@ -144,21 +143,11 @@ define([
 	    	 				img.name= $(file).val();
 	    	 				img.url= $(file).attr('url');
 	    	 				img.deleteurl= $(file).attr('deleteurl');
-	    	 				img.thumbnailurl= $(file).attr('thumbnailurl');
+	    	 				img.url= $(file).attr('url');
 	    	 			files[index] = img;
 	    	 	});
 	    	 		
 	    	 		data.files = files;
-console.info(data);
-			    /*var data = new FormData();
-			    //var files = $('#files').attr('files');
-			    
-			    data.title = $('#title').val();
-			    data.content = $('#content').val();
-			    data.type = $('#ptype').val();
-			    console.log(data);
-			    alert('aa');
-			    return false;*/
 	    	 	post.save(data,{
 	    	 		success:function(model, response){
 	    	 			console.log(response);

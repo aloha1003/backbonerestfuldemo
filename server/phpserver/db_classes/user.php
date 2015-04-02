@@ -24,8 +24,8 @@ class dUser  extends Db {
 			$doc = array( 'username' => $username,
 						  'password' =>	md5($password),
 						  'type' =>	$type,
-						  'updatetime' => mktime(),
-						  'createtime' => mktime()
+						  'updatetime' => time(),
+						  'createtime' => time()
 						);	
 			
 			$this->insert($doc);

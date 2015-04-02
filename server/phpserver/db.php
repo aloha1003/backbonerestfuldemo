@@ -5,7 +5,7 @@ class Db   {
 	private $port='27017';
 	private $user = '';
 	private $pw = '';
-	private $redis;
+	public  $redis;
 	private $select_db='backbonewithrestful';
 	public $collection ;
 	public $collection_name ;
@@ -52,7 +52,7 @@ class Db   {
 		$db_str .= $host.':'.$port;
 		$db_str .= '/'.$select_db;
 
-		$mongo =  new Mongo($db_str);
+		$mongo =  new MongoClient($db_str);
 		//$mongo =  new Mongo($credentials->url);
 		
 		
@@ -210,5 +210,6 @@ class Db   {
 		$result =  json_encode($this->collection->findOne($where));
 				return $result;
 	}
+
 }
 ?>

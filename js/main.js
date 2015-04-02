@@ -1,5 +1,3 @@
-
-
 // Require.js allows us to configure shortcut alias
 require.config({
    urlArgs: "bust="+(new Date()).getTime(),
@@ -23,7 +21,6 @@ require.config({
     templates: '../templates'
   }
 });
-
 require([
   'config',
   'jquery',
@@ -37,23 +34,21 @@ require([
   ],
   function(config,$,cookie,_,Backbone,AppView,Router,bootstrap,View){
     window.$ = $;
-    window.Backbone = Backbone;
-     
-window._ = _;
-window.Router = Router;
-window.Config = config;
-server = config.server;
-file_upload = config.file_upload;
-facebookappid = config.facebookappid;
- _.templateSettings = {
-        interpolate : /\{\{=(.+?)\}\}/g,
-        escape:  /\{\{-([\s\S]+?)\}\}/g, 
-        evaluate:  /\{\{([\s\S]+?)\}\}/g
-      };
-  var appView = View.create({}, 'AppView', AppView);
-  Router.initialize({appView: appView});
-  appView.render(); 
-  
+    window.Backbone = Backbone; 
+    window._ = _;
+    window.Router = Router;
+    window.Config = config;
+    server = config.server;
+    file_upload = config.file_upload;
+    facebookappid = config.facebookappid;
+     _.templateSettings = {
+            interpolate : /\{\{=(.+?)\}\}/g,
+            escape:  /\{\{-([\s\S]+?)\}\}/g, 
+            evaluate:  /\{\{([\s\S]+?)\}\}/g
+          };
+    var appView = View.create({}, 'AppView', AppView);
+    Router.initialize({appView: appView});
+    appView.render(); 
 });
 
 

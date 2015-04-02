@@ -96,7 +96,7 @@ class Container extends Control {
         else
         {
             $method = 'rest'. ucfirst(strtolower($this->segments[0]));
-        
+            
             if ( !method_exists($this->control, $method) ) {
                 self::exceptionResponse(405, 'Method not Allowed!');
             }

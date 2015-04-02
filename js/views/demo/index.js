@@ -16,9 +16,6 @@ define([
     render: function () {
       var that = this;
       var user = new UserCollection();
-     
-      //console.log('user:'+$.cookie('user_id'));
-     
        user.fetch({
         success:function(col,res){
          // console.log(res);
